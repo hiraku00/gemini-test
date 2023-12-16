@@ -10,7 +10,7 @@ config = {
   "temperature": 0.9,
   "top_p": 1,
   "top_k": 1,
-  "max_output_tokens": 2048,
+  "max_output_tokens": 4096,
 }
 
 # ===========================================
@@ -29,6 +29,19 @@ prompt = [
 response = model.generate_content(prompt)
 print(response.text)
 print(f"===============================================")
+
+# ----------------------------
+# Execute Chat (text)
+# ----------------------------
+history = []
+history.append({'role':'user',
+                 'parts':["私は鈴木と言います"]})
+history.append({'role':'model',
+                 'parts':["こんにちは鈴木！"]})
+
+chat = model.start_chat(history=history)
+response = chat.send_message("こんにちは！私の名前は知っていますか？")
+print(response.text)
 
 # ===========================================
 # model_name="gemini-pro-vision"
